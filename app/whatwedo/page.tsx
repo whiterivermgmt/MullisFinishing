@@ -9,13 +9,13 @@ const sections = [
   {
     title: "About Escos Green",
     text: "Escos Green is your local wellness hub, dedicated to providing premium CBD and plant-based wellness products. We focus on health, relaxation, and creating a positive impact in our community.",
-    img: "/escos/gallery/g1.jpg",
+    img: "/location/IMG_8343.JPEG",
     bg: "bg-gray-50",
   },
   {
     title: "Our Mission",
     text: "We aim to combine modern wellness methods with ethical sourcing and quality standards. Every product is carefully lab-tested and crafted to ensure safety, effectiveness, and enjoyment.",
-    img: "/escos/gallery/g2.jpg",
+    img: "/location/IMG_8350.JPEG",
     bg: "bg-white",
   },
   {
@@ -27,13 +27,13 @@ const sections = [
   {
     title: "Quality & Transparency",
     text: "Quality, transparency, and customer education drive everything we do. Our products are lab-tested, ethically sourced, and curated to help you make informed wellness choices.",
-    img: "/escos/gallery/g4.jpg",
+    img: "/location/IMG_8347.JPEG",
     bg: "bg-white",
   },
   {
     title: "Visit Us",
     text: "Come experience Escos Green for yourself! Whether you’re looking for wellness products or a community space to enjoy live shows and events, we welcome everyone to join our green community.",
-    img: "/escos/gallery/g5.jpg",
+    img: "/location/IMG_8344.JPEG",
     bg: "bg-gray-50",
   },
 ];

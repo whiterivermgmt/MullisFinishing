@@ -17,30 +17,7 @@ import HeroBanner from "@/components/ui/HeroBanner";
 import WhyChooseEscos from "@/components/ui/WhyEscos";
 import WhyEscos from "@/components/ui/WhyEscos";
 
-const featuredMenu = [
-  {
-    title: "Dine In At Johnny Junxions",
-    description:
-      "Enjoy freshly prepared meals right here at our gas station with plenty of seating. From signature pizzas to classic combos, every dish is made fresh from our own kitchen and ready to satisfy your cravings.",
-    img: "/gallery/menu1.jpg",
-    reverse: false,
-  },
-  {
-    title: "Grab & Go!",
-    description:
-      "In a hurry? Johnny Junxions has you covered with quick, freshly made meals perfect for those on the run. Stop by, grab your favorites, and keep moving!",
-    img: "/gallery/menu.jpg",
-    reverse: true,
-  },
-];
 
-const categories = [
-  { name: "Signatures", img: "/gallery/gallery19.jpg" },
-  { name: "Breakfast", img: "/gallery/gallery8.jpg" },
-  { name: "Pizza", img: "/gallery/galery12.jpg" },
-  { name: "Sandwiches", img: "/gallery/galery11.jpg" },
-  { name: "Chicken Tenders", img: "/gallery/galery3.jpg" },
-];
 
 const HomePage = () => {
   const [selectedImg, setSelectedImg] = useState<string | null>(null);

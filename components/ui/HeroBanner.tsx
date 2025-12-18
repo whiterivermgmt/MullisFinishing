@@ -4,10 +4,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const heroImages = [
-  "/escos/gallery/g7.jpg",
-  "/escos/gallery/g2.jpg",
-  "/escos/gallery/g3.jpg",
-  "/escos/gallery/g4.jpg",
+  "/location/IMG_8343.JPEG",
+  "/location/IMG_8345.JPEG",
+  "/location/IMG_8344.JPEG",
+  "/location/IMG_8347.JPEG",
+  "/location/IMG_8349.JPEG",
 ];
 
 const HomeBanner: React.FC = () => {

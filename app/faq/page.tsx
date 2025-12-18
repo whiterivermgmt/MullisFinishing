@@ -19,7 +19,7 @@ const faqs = [
   },
   {
     question: "Where is Escos located?",
-    answer: "We are located at 2700 John Williams Blvd, Bedford, IN.",
+    answer: "We are located at 6264 Sandpit Rd, Bedford, IN.",
   },
   {
     question: "Do you offer CBD for pets?",

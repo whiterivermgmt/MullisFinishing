@@ -6,6 +6,21 @@ import Image from "next/image";
 import { IoIosArrowBack, IoIosArrowForward, IoMdClose } from "react-icons/io";
 
 const galleryImages = [
+  
+  "/location/IMG_8343.JPEG",
+  "/location/IMG_8344.JPEG",
+  "/location/IMG_8345.JPEG",
+  "/location/IMG_8346.JPEG",
+  "/location/IMG_8347.JPEG",
+  "/location/IMG_8348.JPEG",
+  "/location/IMG_8349.JPEG",
+  "/location/IMG_8350.JPEG",
+  "/location/IMG_8351.JPEG",
+  "/location/IMG_8352.JPEG",
+  "/location/IMG_8353.JPEG",
+  "/location/IMG_8354.JPEG",
+  "/location/IMG_8355.JPEG",
+  "/location/IMG_8356.JPEG",
   "/escos/gallery/g1.jpg",
   "/escos/gallery/g2.jpg",
   "/escos/gallery/g3.jpg",
@@ -16,6 +31,7 @@ const galleryImages = [
   "/escos/gallery/g8.jpg",
   "/escos/gallery/g9.jpg",
   "/escos/gallery/g10.jpg",
+  
 ];
 
 const GalleryPage = () => {

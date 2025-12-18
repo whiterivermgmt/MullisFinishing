@@ -6,10 +6,10 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const featuredImages = [
-  "/escos/gallery/g1.jpg",
-  "/escos/gallery/g2.jpg",
-  "/escos/gallery/g3.jpg",
-  "/escos/gallery/g4.jpg",
+  "/location/IMG_8302.JPEG",
+  "/location/IMG_8343.JPEG",
+  "/location/IMG_8353.JPEG",
+  "/location/IMG_8350.JPEG",
 ];
 
 const Locations: React.FC = () => {

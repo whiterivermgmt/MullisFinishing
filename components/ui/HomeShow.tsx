@@ -11,7 +11,7 @@ const sections = [
   {
     title: "About Escos Green",
     text: "Escos Green is dedicated to providing premium CBD and wellness products that improve health, relaxation, and everyday well-being. Our journey is rooted in passion, care, and community-focused values.",
-    img: "/escos/gallery/g8.jpg",
+    img: "/location/IMG_8347.JPEG",
     reverse: false,
     buttonText: "Learn More",
     buttonHref: "/whatwedo",
@@ -19,7 +19,7 @@ const sections = [
   {
     title: "Our Mission",
     text: "We strive to combine traditional wellness methods with modern innovation, ensuring every product is ethically sourced, lab-tested, and crafted to meet the highest standards. Supporting our community and environment is at the core of everything we do.",
-    img: "/escos/gallery/g2.jpg",
+    img: "/location/IMG_8343.JPEG",
     reverse: true,
     buttonText: "Questions?",
     buttonHref: "/faq",

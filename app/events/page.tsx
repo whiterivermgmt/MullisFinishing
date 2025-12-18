@@ -14,53 +14,12 @@ interface Event {
 // Community-focused events
 const events: Event[] = [
   {
-    date: "2025-12-08",
-    title: "Live Music Night",
-    description: "Join us for a local acoustic set in-store!",
-    type: "show",
-  },
-  {
-    date: "2025-12-10",
-    title: "Community Art Workshop",
-    description: "Local artists share their techniques in a fun workshop.",
-    type: "community",
-  },
-  {
-    date: "2025-12-12",
-    title: "Green Gathering",
-    description: "Meet community members and learn about sustainability initiatives.",
-    type: "community",
-  },
-  {
-    date: "2025-12-15",
-    title: "Holiday Music Night",
-    description: "Live festive music and community cheer.",
+    date: "2025-12-25",
+    title: "Christmas Day",
+    description: "Merry Christmas!",
     type: "holiday",
   },
-  {
-    date: "2025-12-20",
-    title: "Open Mic Evening",
-    description: "Showcase your talent on stage in front of the community.",
-    type: "show",
-  },
-  {
-    date: "2025-12-24",
-    title: "Winter Community Meetup",
-    description: "Networking and live music to celebrate the season.",
-    type: "holiday",
-  },
-  {
-    date: "2025-12-31",
-    title: "New Year Countdown",
-    description: "Join us for a local countdown and live DJ set.",
-    type: "show",
-  },
-  {
-    date: "2026-01-01",
-    title: "New Year Community Brunch",
-    description: "Kick off the year with your neighbors and friends.",
-    type: "community",
-  },
+  
 ];
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -113,7 +72,7 @@ const EventsPage = () => {
   return (
     <main className="min-h-screen bg-green-50 py-12 px-4 flex flex-col items-center">
       <h1 className="text-5xl font-bold mb-10 text-green-700">
-        Green Community Events
+      Community Events
       </h1>
 
       {/* Calendar */}

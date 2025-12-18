@@ -13,40 +13,13 @@ type Event = {
 
 const events: Event[] = [
   {
-    date: 3,
-    title: "Christmas Music Special",
-    color: "bg-red-500",
-    time: "6:00 PM",
-    description: "Special holiday music lineup featuring local artists.",
-  },
-  {
-    date: 7,
-    title: "Local Band Spotlight",
-    color: "bg-green-500",
-    time: "7:30 PM",
-    description: "Highlighting a talented local band live on air.",
-  },
-  {
-    date: 12,
-    title: "Giveaway Event",
-    color: "bg-blue-500",
-    time: "5:00 PM",
-    description: "Enter for a chance to win exclusive prizes.",
-  },
-  {
-    date: 18,
-    title: "Charity Drive",
-    color: "bg-yellow-500",
-    time: "All Day",
-    description: "Join us to support the local community charity drive.",
-  },
-  {
     date: 25,
-    title: "Holiday Special",
-    color: "bg-purple-500",
-    time: "6:00 PM",
-    description: "A festive special show to celebrate the holidays.",
+    title: "Christmas",
+    color: "bg-red-500",
+    time: "all day",
+    description: "Merry Christmas!",
   },
+ 
 ];
 
 const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
