@@ -7,26 +7,27 @@ import { motion } from "framer-motion";
 const Logo = () => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -20, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.97 }}
-      className="select-none"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      whileHover={{ scale: 1.02 }}
+      className="select-none flex items-center"
     >
       <Link href="/" className="block">
         <Image
-          src="/escos/logo.png"
-          alt="Escos Logo"
-          width={300}
-          height={100}
-          className="
-            h-10        /* mobile */
-            md:h-12     /* tablet */
-            lg:h-14     /* desktop */
-            w-auto
-          "
+          src="/escos/logo1.png"
+          alt="Rs Logo"
+          width={520}
+          height={180}
           priority
+          className="
+            w-auto
+            h-16        /* mobile */
+            md:h-16     /* tablet */
+            lg:h-24     /* desktop */
+            xl:h-28     /* large desktop */
+            object-contain
+          "
         />
       </Link>
     </motion.div>

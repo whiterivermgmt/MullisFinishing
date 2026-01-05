@@ -27,12 +27,13 @@ const HomePage = () => {
 
 
       {/* Hero Section */}
-      <section className="relative w-full  mt-6 h-96 md:h-[500px] rounded-xl overflow-hidden shadow-lg">
+      <section className="relative w-full mt-6">
         <HeroBanner />
   
       </section>
+            <Locations />
             <WhyEscos />
-      <Locations />
+
       <HomeShow />
     
       <section className="w-full max-w-6xl">

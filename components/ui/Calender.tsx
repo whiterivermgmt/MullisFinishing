@@ -1,133 +1,92 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
+import Container from "@/components/ui/Container";
+import Link from "next/link";
 
-type Event = {
-  date: number; // day of month
-  title: string;
-  color: string; // Tailwind color class
-  time: string;
-  description: string;
-};
-
-const events: Event[] = [
+// Define RS Services
+const services = [
   {
-    date: 25,
-    title: "Christmas",
-    color: "bg-red-500",
-    time: "all day",
-    description: "Merry Christmas!",
+    title: "Residential Electrical",
+    description:
+      "Safe and efficient wiring, installations, and upgrades for your home.",
+    href: "/services/residential",
   },
- 
+  {
+    title: "Commercial Electrical",
+    description:
+      "Reliable electrical solutions for offices, retail, and industrial spaces.",
+    href: "/services/commercial",
+  },
+  {
+    title: "Lighting Installations",
+    description:
+      "Interior and exterior lighting solutions to brighten up any space.",
+    href: "/services/lighting",
+  },
+  {
+    title: "Panel Upgrades",
+    description:
+      "Modernize your electrical panel for safety and capacity improvements.",
+    href: "/services/panel-upgrades",
+  },
+  {
+    title: "Troubleshooting & Repairs",
+    description:
+      "Quick, accurate diagnosis and repair of electrical problems.",
+    href: "/services/troubleshooting",
+  },
+  {
+    title: "Generator Installation",
+    description:
+      "Backup power solutions to keep your home or business running smoothly.",
+    href: "/services/generators",
+  },
 ];
 
-const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-const Calendar: React.FC<{ month?: number; year?: number }> = ({
-  month = new Date().getMonth(),
-  year = new Date().getFullYear(),
-}) => {
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  const calendarCells: (number | null)[] = [];
-  for (let i = 0; i < firstDayOfMonth; i++) calendarCells.push(null);
-  for (let day = 1; day <= daysInMonth; day++) calendarCells.push(day);
-
-  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-
-  const handleCloseModal = () => setSelectedEvent(null);
-
+const ServicesSection: React.FC = () => {
   return (
-    <div className="w-full max-w-3xl mx-auto p-4">
-      {/* Month Header */}
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-          {new Date(year, month).toLocaleString("default", {
-            month: "long",
-            year: "numeric",
-          })}
-        </h2>
-      </div>
+    <section className="bg-gray-50 py-20">
+      <Container>
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-gray-900">
+            Our Services
+          </h2>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            RS Services provides professional electrical solutions for homes and businesses. 
+            Every project is completed safely, efficiently, and to code.
+          </p>
+        </div>
 
-      {/* Days of Week */}
-      <div className="grid grid-cols-7 text-center font-semibold text-sm md:text-base text-gray-700 mb-2">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="py-2">
-            {day}
-          </div>
-        ))}
-      </div>
-
-      {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-2">
-        {calendarCells.map((day, index) => {
-          const dayEvents = events.filter((e) => e.date === day);
-          const isToday =
-            day === new Date().getDate() &&
-            month === new Date().getMonth() &&
-            year === new Date().getFullYear();
-
-          return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, idx) => (
             <motion.div
-              key={index}
-              whileHover={{ scale: day ? 1.03 : 1 }}
-              className={`h-20 md:h-24 border rounded-lg p-2 flex flex-col justify-start items-center cursor-pointer transition ${
-                isToday ? "border-blue-400" : "border-gray-200"
-              }`}
-              onClick={() => dayEvents.length && setSelectedEvent(dayEvents[0])}
+              key={idx}
+              whileHover={{ scale: 1.03, y: -5 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="bg-white rounded-3xl shadow-xl p-8 flex flex-col justify-between cursor-pointer"
             >
-              <span className="font-semibold text-gray-900">{day}</span>
-
-              {/* Event dots */}
-              <div className="flex flex-col mt-1 gap-1">
-                {dayEvents.map((event, i) => (
-                  <span
-                    key={i}
-                    className={`w-2 h-2 rounded-full ${event.color}`}
-                  />
-                ))}
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {service.title}
+                </h3>
+                <p className="text-gray-700 leading-relaxed">{service.description}</p>
+              </div>
+              <div className="mt-6">
+                <Link
+                  href={service.href}
+                  className="inline-block px-6 py-3 rounded-full bg-[#04398c] text-white font-semibold shadow-lg transition-all hover:bg-[#032f73] hover:shadow-xl"
+                >
+                  Learn More
+                </Link>
               </div>
             </motion.div>
-          );
-        })}
-      </div>
-
-      {/* Modal */}
-      <AnimatePresence>
-        {selectedEvent && (
-          <motion.div
-            className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={handleCloseModal}
-          >
-            <motion.div
-              className="bg-white rounded-xl shadow-xl p-6 max-w-sm w-full relative"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 font-bold text-xl"
-                onClick={handleCloseModal}
-              >
-                &times;
-              </button>
-              <h3 className="text-lg font-bold mb-2">{selectedEvent.title}</h3>
-              <p className="text-gray-600 mb-1">
-                <strong>Time:</strong> {selectedEvent.time}
-              </p>
-              <p className="text-gray-700">{selectedEvent.description}</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+          ))}
+        </div>
+      </Container>
+    </section>
   );
 };
 
-export default Calendar;
+export default ServicesSection;

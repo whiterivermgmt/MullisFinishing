@@ -36,7 +36,7 @@ const HeaderMenu: React.FC<HeaderMenuProps> = ({ items }) => {
                 href={item.href}
                 className={`
                   font-bold text-2xl transition-all duration-200 uppercase
-                  ${isActive ? "text-[#f9ac04]" : "text-[#2f855a]"}
+                  ${isActive ? "text-[#f9ac04]" : "text-[#04398c]"}
                   hover:text-[#f9ac04] flex items-center gap-1 min-w-0
                 `}
                 style={{ fontFamily: "'Bubblegum Sans', cursive" }}

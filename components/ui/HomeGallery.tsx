@@ -1,86 +1,180 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
-const galleryImages = [
-  "/escos/gallery/g2.jpg",
-  "/escos/gallery/g3.jpg",
-  "/escos/gallery/g4.jpg",
-  "/escos/gallery/g5.jpg",
-  "/escos/gallery/g6.jpg",
-  "/escos/gallery/g7.jpg",
-  "/escos/gallery/g8.jpg",
-  "/escos/gallery/g9.jpg",
-  "/escos/gallery/g10.jpg",
-];
-
-const EventsGallery = () => {
-  const galleryRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll effect
-  useEffect(() => {
-    const gallery = galleryRef.current;
-    if (!gallery) return;
-    let scrollAmount = 0;
-    const speed = 0.3; // adjust for slower/faster
-
-    const animate = () => {
-      if (!gallery) return;
-      scrollAmount += speed;
-      if (scrollAmount >= gallery.scrollWidth / 2) {
-        scrollAmount = 0; // loop
-      }
-      gallery.scrollLeft = scrollAmount;
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-  }, []);
-
-  const scrollBy = (offset: number) => {
-    if (!galleryRef.current) return;
-    galleryRef.current.scrollBy({ left: offset, behavior: "smooth" });
-  };
-
-  // Duplicate images for infinite scroll effect
-  const infiniteImages = [...galleryImages, ...galleryImages];
-
+const ContactSection = () => {
   return (
-    <div className="w-full max-w-6xl relative my-12">
-      <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">Past Event Highlights</h2>
+    <section className="w-full bg-white py-20 px-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-[#04398c]">
+            Contact Us
+          </h2>
+          <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+            Have a question or want to get in touch? Fill out the form below and
+            our team will respond as soon as possible.
+          </p>
+        </motion.div>
 
-      {/* Modern Arrows */}
-      <button
-        onClick={() => scrollBy(-300)}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-200 text-gray-700 p-3 rounded-full shadow hover:bg-gray-300 transition"
-      >
-        {"<"}
-      </button>
-      <button
-        onClick={() => scrollBy(300)}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-200 text-gray-700 p-3 rounded-full shadow hover:bg-gray-300 transition"
-      >
-        {">"}
-      </button>
+        {/* Form */}
+        <motion.form
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-2xl shadow-lg p-8 md:p-10 space-y-6"
+        >
+          {/* Name */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700">
+                First Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]"
+              />
+            </div>
 
-      <div
-        ref={galleryRef}
-        className="flex overflow-x-hidden whitespace-nowrap gap-4 py-4 px-6"
-      >
-        {infiniteImages.map((img, idx) => (
-          <motion.div
-            key={idx}
-            className="inline-block min-w-[250px] h-48 relative rounded-xl overflow-hidden shrink-0 cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-          >
-            <Image src={img} alt={`Event ${idx}`} fill className="object-cover" />
-          </motion.div>
-        ))}
+            <div>
+              <label className="block text-sm font-semibold text-gray-700">
+                Last Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]"
+              />
+            </div>
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Email Address <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              required
+              className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]"
+            />
+          </div>
+
+          {/* Phone + ZIP */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-semibold text-gray-700">
+                Phone Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="tel"
+                required
+                className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-700">
+                ZIP Code <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                required
+                className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]"
+              />
+            </div>
+          </div>
+
+          {/* How did you learn about us */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              How Did You Learn About Us
+            </label>
+            <select className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]">
+              <option value="">Select an option</option>
+              <option>Friend or Family</option>
+              <option>Google Search</option>
+              <option>Social Media</option>
+              <option>Existing Customer</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          {/* Existing Customer */}
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="existingCustomer"
+              className="w-5 h-5 accent-[#04398c]"
+            />
+            <label
+              htmlFor="existingCustomer"
+              className="text-sm text-gray-700 font-medium"
+            >
+              I am an existing customer
+            </label>
+          </div>
+
+          {/* Message */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700">
+              Please Enter Your Message <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              required
+              rows={5}
+              className="mt-2 w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#04398c]"
+            />
+          </div>
+
+          {/* Mobile Opt-In */}
+          <div className="flex items-start gap-3">
+            <input
+              type="checkbox"
+              id="mobileOptIn"
+              className="mt-1 w-5 h-5 accent-[#04398c]"
+            />
+            <label
+              htmlFor="mobileOptIn"
+              className="text-sm text-gray-600 leading-relaxed"
+            >
+              I agree to receive mobile messages and updates. Message and data
+              rates may apply.
+            </label>
+          </div>
+
+          {/* Submit */}
+          <div className="pt-4 text-center">
+            <button
+              type="submit"
+              className="
+                inline-flex items-center justify-center
+                rounded-full
+                bg-[#04398c]
+                px-8 py-3
+                text-white font-semibold
+                shadow-md
+                transition
+                hover:bg-[#032f73]
+                hover:scale-105
+              "
+            >
+              Submit Message
+            </button>
+          </div>
+        </motion.form>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default EventsGallery;
+export default ContactSection;

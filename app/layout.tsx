@@ -3,18 +3,16 @@ import "./globals.css";
 import  Header  from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import HeroBanner from "@/components/ui/HeroBanner";
-import SocialMediaHeader from "@/components/ui/SocialMediaHeader";
 import { Analytics } from '@vercel/analytics/next';
 import HeaderBanner from "@/components/ui/HeaderBanner";
 import LiveRadio from "@/components/ui/LiveRadio";
-import TwentyOnePlus from "@/components/ui/TwentyOnePlus";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Escos Green+",
-    default: "Escos Green+",
+    template: "%s - Rs Services",
+    default: "Rs Services",
 },
-description: "Escos Green+ - All your Green needs in Bedford, Indiana. Let's All Go to Escos!"
+description: "Licensed electrician serving the Orange & Lawrence County areas offering electrical and home repair services."
 };
 
 export default function RootLayout({
@@ -25,8 +23,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-poppins antialiased`}>
-        <TwentyOnePlus />
-      <SocialMediaHeader />
        <Header />
         {children}
         <Footer />

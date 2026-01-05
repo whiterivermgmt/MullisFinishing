@@ -6,6 +6,7 @@ import {
   Image,
   PhoneForwardedIcon,
 } from "lucide-react";
+import { title } from "process";
 import { GrArticle } from "react-icons/gr";
 
 export const headerData = [
@@ -14,13 +15,13 @@ export const headerData = [
 
   {
     title: "About",
-    href: "/whatwedo",
+    href: "/about",
     side: "left",
     submenu: [
-      { title: "About Us", href: "/whatwedo", icon: BookOpen },
-      { title: "Gallery", href: "/gallery", icon: Image },
-      { title: "Contact", href: "/contact", icon: PhoneForwardedIcon },
-      { title: "COAS", href: "/coas", icon: ClipboardList },
+      { title: "About Us", href: "/faq", icon: BookOpen },
+      { title: "Gallery", href: "/faq", icon: Image },
+      { title: "Contact", href: "/faq", icon: PhoneForwardedIcon },
+      { title: "Join Our Team", href: "/faq", icon: ClipboardList },
       {
         title: "FAQ",
         href: "/faq",
@@ -28,8 +29,8 @@ export const headerData = [
       },
     ],
   },
-
-  { title: "Events", href: "/events", side: "left" },
+  { title: "Residential", href: "/faq" },
+  { title: "Commercial", href: "/faq" },
   
 
 ];

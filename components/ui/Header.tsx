@@ -10,16 +10,16 @@ import { headerData } from "@/Constants/data";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobileMenu, setIsMobileMenu] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const leftMenu = headerData.slice(0, 3);
-  const rightMenu = headerData.slice(3, 6);
+  const menuItems = headerData;
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobileMenu(window.innerWidth < 1024);
+      setIsMobile(window.innerWidth < 1024);
       if (window.innerWidth >= 1024) setIsSidebarOpen(false);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -27,56 +27,66 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full sticky z-50 bg-white/90 shadow-sm">
-        <Container
-          fullWidth
-          className="relative z-10 flex items-center h-20 px-6 lg:px-10"
-        >
-          {/* LEFT SIDE */}
-          <div className="flex items-center flex-none lg:w-1/3">
-            {!isMobileMenu && <HeaderMenu items={leftMenu} />}
-
-            {isMobileMenu && (
-              <div
-                className="cursor-pointer"
-                onClick={() => setIsSidebarOpen(true)}
-              >
-                {/* hamburger icon  */}
-                <AlignLeft className="w-7 h-7 text-green-700" />
-              </div>
-            )}
-          </div>
-
-          {/* CENTER LOGO */}
-          <div className="flex grow justify-center items-center pointer-events-none">
-            <div className="pointer-events-auto">
+      <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
+        <Container fullWidth className="px-6 lg:px-10">
+          <div className="relative flex h-20 items-center justify-between">
+            {/* LEFT — Desktop Logo + Menu */}
+            <div className="hidden lg:flex items-center gap-6">
               <Logo />
+              <HeaderMenu items={menuItems} />
+            </div>
+
+            {/* LEFT — Mobile Hamburger */}
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="
+                lg:hidden
+                p-2 rounded-md
+                cursor-pointer
+                hover:bg-blue-50
+                transition
+              "
+              aria-label="Open Menu"
+            >
+              <AlignLeft className="h-7 w-7 text-[#04398c]" />
+            </button>
+
+            {/* CENTER — Mobile Logo ONLY */}
+            <div className="absolute left-1/2 -translate-x-1/2 lg:hidden ">
+              <Logo />
+            </div>
+
+            {/* RIGHT — CTA */}
+            <div className="flex items-center">
+              <a
+                href="/faq"
+                className="
+                  whitespace-nowrap
+                  rounded-full
+                  bg-[#04398c]
+                  px-5 py-2
+                  text-sm md:text-base
+                  font-semibold
+                  text-white
+                  shadow-md
+                  transition
+                  hover:bg-[#032f73]
+                  hover:scale-105
+                "
+              >
+                Contact Us
+              </a>
             </div>
           </div>
 
-          {/* RIGHT SIDE BUTTON */}
-          <div className="flex items-center justify-end flex-none lg:w-1/3">
-            <a
-              href="/contact"
-              className="
-                whitespace-nowrap 
-                px-5 py-2 rounded-full 
-                bg-[#f9ac04] text-white font-semibold 
-                text-sm md:text-base
-                shadow-md hover:bg-orange-500 hover:scale-105 transition-transform
-              "
-            >
-              Contact Us
-            </a>
-          </div>
         </Container>
-
-        {/* SIDEBAR FOR MOBILE */}
-        <SideMenu
-          isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
-        />
       </header>
+
+      {/* MOBILE SIDEBAR */}
+      <SideMenu
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
     </>
   );
 };

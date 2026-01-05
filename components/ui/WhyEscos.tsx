@@ -1,38 +1,93 @@
-'use client';
-import React from "react";
-import { FaLeaf, FaUserTie, FaMapMarkerAlt, FaHeart } from "react-icons/fa";
+"use client";
 
-const features = [
-  { icon: <FaLeaf size={28} className="text-orange-500" />, title: "Premium Products", text: "High-quality CBD & wellness items carefully curated for everyday lifestyle and relaxation." },
-  { icon: <FaUserTie size={28} className="text-blue-500" />, title: "Expert Guidance", text: "Knowledgeable staff ready to help you select the right product for your needs." },
-  { icon: <FaMapMarkerAlt size={28} className="text-purple-500" />, title: "Convenient Location", text: "Visit our Bedford store – easy access, welcoming environment, 21+." },
-  { icon: <FaHeart size={28} className="text-pink-500" />, title: "Commitment to Care", text: "We prioritize quality, safety, and customer satisfaction in every product we offer." },
+import React from "react";
+import {
+  FaBolt,
+  FaHardHat,
+  FaClipboardCheck,
+  FaClock,
+  FaBuilding,
+  FaShieldAlt,
+} from "react-icons/fa";
+
+const values = [
+  {
+    icon: <FaBolt size={24} />,
+    title: "Licensed & Experienced",
+    text: "Our electricians are fully licensed and bring years of hands-on experience to every job.",
+  },
+  {
+    icon: <FaShieldAlt size={24} />,
+    title: "Safety First",
+    text: "We follow strict safety standards and electrical codes to protect your property and everyone inside.",
+  },
+  {
+    icon: <FaClipboardCheck size={24} />,
+    title: "Code-Compliant Work",
+    text: "All installations and repairs meet local, state, and national electrical codes.",
+  },
+  {
+    icon: <FaClock size={24} />,
+    title: "Reliable & On Time",
+    text: "We respect your schedule and show up when we say we will, ready to work efficiently.",
+  },
+  {
+    icon: <FaBuilding size={24} />,
+    title: "Residential & Commercial",
+    text: "From homes to businesses, we handle projects of all sizes with the same attention to detail.",
+  },
+  {
+    icon: <FaHardHat size={24} />,
+    title: "Professional Workmanship",
+    text: "Clean, organized job sites and quality craftsmanship are standard on every project.",
+  },
 ];
 
-const WhyEscos: React.FC = () => {
+const WhyRSServices: React.FC = () => {
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center">
-          <h2 className="text-4xl font-extrabold text-gray-900 sm:text-5xl">
-            Why Choose Escos Green+
+    <section className="relative py-24 bg-white">
+      {/* Subtle background accent */}
+      <div className="absolute inset-x-0 top-0 h-64 bg-[#04398c]/5" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        {/* Heading */}
+        <div className="text-center max-w-3xl mx-auto">
+          <h2 className="text-4xl sm:text-5xl font-bold text-[#04398c]">
+            Why Choose RS Services
           </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover why our customers love us. Premium products, expert guidance, convenient location, and unwavering commitment to quality.
+          <p className="mt-5 text-lg text-gray-600">
+            Dependable electrical services built on experience, safety,
+            and professional standards.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, idx) => (
+        {/* Values Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {values.map((value, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center text-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl"
+              className="
+                bg-white
+                rounded-xl
+                border border-gray-200
+                p-8
+                shadow-sm
+                transition-all
+                hover:shadow-lg
+                hover:-translate-y-1
+              "
             >
-              <div className="flex items-center justify-center w-20 h-20 mb-6 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 text-4xl">
-                {feature.icon}
+              <div className="mb-5 flex items-center justify-center w-14 h-14 rounded-full bg-[#04398c]/10 text-[#04398c]">
+                {value.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
-              <p className="text-gray-600">{feature.text}</p>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {value.title}
+              </h3>
+
+              <p className="text-gray-600 leading-relaxed">
+                {value.text}
+              </p>
             </div>
           ))}
         </div>
@@ -41,4 +96,4 @@ const WhyEscos: React.FC = () => {
   );
 };
 
-export default WhyEscos;
+export default WhyRSServices;

@@ -1,80 +1,85 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
-const featuredImages = [
-  "/location/IMG_8302.JPEG",
-  "/location/IMG_8343.JPEG",
-  "/location/IMG_8353.JPEG",
-  "/location/IMG_8350.JPEG",
-];
-
-const Locations: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % featuredImages.length);
-    }, 5000); // rotate every 5 seconds
-    return () => clearInterval(timer);
-  }, []);
-
+const StaticFeature: React.FC = () => {
   return (
-    <section className="bg-gray-50 py-12 lg:py-16">
+    <section className="bg-gray-50 py-20">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          
-          {/* LEFT — ROTATING IMAGE SLIDER */}
-          <div className="relative w-full h-[350px] rounded-2xl overflow-hidden shadow-xl">
-            <AnimatePresence>
-              <motion.div
-                key={featuredImages[currentIndex]}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.2 }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={featuredImages[currentIndex]}
-                  alt="Escos Featured"
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          {/* RIGHT — ESCOS INFO CARD */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col justify-between h-[350px]">
+          {/* LEFT — STATIC IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <Image
+              src="/location/img2.jpg"
+              alt="RS Services Electrical Work"
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+
+          {/* RIGHT — CONTENT CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl shadow-xl p-10 flex flex-col justify-between min-h-[420px]"
+          >
             <div>
-              <h2 className="text-2xl font-bold text-green-800">Escos Green</h2>
-              <p className="text-green-700 font-semibold mt-1">
-                Premium CBD & Wellness Products
+              <span className="inline-block text-sm font-semibold tracking-widest text-[#04398c] uppercase mb-3">
+                Electrical Contractors
+              </span>
+
+              <h2 className="text-3xl font-bold text-gray-900">
+                RS Services
+              </h2>
+
+              <div className="w-16 h-1 bg-[#04398c] rounded-full mt-4 mb-6" />
+
+              <p className="text-gray-700 leading-relaxed mb-4">
+                RS Services provides professional residential and commercial
+                electrical solutions with an emphasis on safety, quality, and
+                long-term performance.
+              </p>
+
+              <p className="text-gray-700 leading-relaxed">
+                From new installations to upgrades and diagnostics, every job
+                is completed with precision, code compliance, and respect for
+                your property.
               </p>
             </div>
 
-            <div className="mt-6 space-y-3">
-              <p className="text-gray-700">
-                Discover our range of lab-tested CBD oils, edibles, and wellness products, crafted with care and ethically sourced for maximum quality.
-              </p>
-              <p className="text-gray-700">
-                Join our community events and live shows for tips, demos, and fun giveaways!
-              </p>
-            </div>
-
-            <div className="mt-6">
+            <div className="mt-8">
               <a
-                href="/faq"
-                className="inline-block px-6 py-3 bg-green-700 text-white rounded-full font-semibold hover:bg-orange-500 transition"
+                href="/services"
+                className="
+                  inline-flex items-center justify-center
+                  px-8 py-4
+                  rounded-full
+                  bg-[#04398c]
+                  text-white
+                  font-semibold
+                  shadow-lg
+                  transition-all
+                  hover:bg-[#032f73]
+                  hover:shadow-xl
+                "
               >
-                Learn More
+                View Our Services
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </Container>
@@ -82,4 +87,4 @@ const Locations: React.FC = () => {
   );
 };
 
-export default Locations;
+export default StaticFeature;

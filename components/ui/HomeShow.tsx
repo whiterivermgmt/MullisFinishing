@@ -6,72 +6,100 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-// Escos themed sections
 const sections = [
   {
-    title: "About Escos Green",
-    text: "Escos Green is dedicated to providing premium CBD and wellness products that improve health, relaxation, and everyday well-being. Our journey is rooted in passion, care, and community-focused values.",
-    img: "/location/IMG_8347.JPEG",
+    title: "About RS Services",
+    text: "RS Services is built on professionalism, safety, and dependable electrical work. We deliver high-quality residential and commercial solutions with precision and care.",
+    img: "/location/img5.jpg",
     reverse: false,
     buttonText: "Learn More",
-    buttonHref: "/whatwedo",
+    buttonHref: "/about",
   },
   {
-    title: "Our Mission",
-    text: "We strive to combine traditional wellness methods with modern innovation, ensuring every product is ethically sourced, lab-tested, and crafted to meet the highest standards. Supporting our community and environment is at the core of everything we do.",
-    img: "/location/IMG_8343.JPEG",
+    title: "Our Commitment",
+    text: "Every project is completed to code, on schedule, and with attention to detail. From installations to troubleshooting, our work is designed to last.",
+    img: "/location/img4.jpg",
     reverse: true,
-    buttonText: "Questions?",
-    buttonHref: "/faq",
+    buttonText: "View Services",
+    buttonHref: "/services",
   },
 ];
 
 const HomeContests = () => {
   return (
-    <section className="bg-gray-50 py-12 lg:py-16 space-y-16">
+    <section className="bg-gray-50 py-20 space-y-24">
       <Container>
         {sections.map((section, index) => (
           <div
             key={index}
-            className={`flex flex-col lg:flex-row items-center gap-8 ${
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
               section.reverse ? "lg:flex-row-reverse" : ""
             }`}
           >
-            {/* Text + Button */}
+            {/* IMAGE — MATCHES LOCATIONS */}
             <motion.div
-              className="flex-1 text-center lg:text-left space-y-4"
-              initial={{ opacity: 0, x: section.reverse ? 50 : -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, scale: 0.96 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl font-bold text-green-800">{section.title}</h2>
-              <p className="text-green-700 text-lg leading-relaxed">{section.text}</p>
-              {section.buttonText && section.buttonHref && (
-                <Link
-                  href={section.buttonHref}
-                  className="inline-block mt-4 px-6 py-3 bg-orange-500 text-white rounded-full font-semibold hover:bg-orange-600 transition"
-                >
-                  {section.buttonText}
-                </Link>
-              )}
-            </motion.div>
-
-            {/* Image */}
-            <motion.div
-              className="flex-1 rounded-xl overflow-hidden shadow-lg"
-              initial={{ opacity: 0, x: section.reverse ? -50 : 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              className={`relative w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl ${
+                section.reverse ? "lg:order-2" : ""
+              }`}
             >
               <Image
                 src={section.img}
                 alt={section.title}
-                width={600}
-                height={400}
-                className="rounded-xl object-cover w-full h-64 lg:h-80"
+                fill
+                className="object-cover"
+                priority
               />
+            </motion.div>
+
+            {/* CONTENT CARD — MATCHES LOCATIONS */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl shadow-xl p-10 flex flex-col justify-between min-h-[420px]"
+            >
+              <div>
+                <span className="inline-block text-sm font-semibold tracking-widest text-[#04398c] uppercase mb-3">
+                  RS Services
+                </span>
+
+                <h2 className="text-3xl font-bold text-gray-900">
+                  {section.title}
+                </h2>
+
+                <div className="w-16 h-1 bg-[#04398c] rounded-full mt-4 mb-6" />
+
+                <p className="text-gray-700 leading-relaxed">
+                  {section.text}
+                </p>
+              </div>
+
+              {section.buttonText && (
+                <div className="mt-8">
+                  <Link
+                    href={section.buttonHref}
+                    className="
+                      inline-flex items-center justify-center
+                      px-8 py-4
+                      rounded-full
+                      bg-[#04398c]
+                      text-white
+                      font-semibold
+                      shadow-lg
+                      transition-all
+                      hover:bg-[#032f73]
+                      hover:shadow-xl
+                    "
+                  >
+                    {section.buttonText}
+                  </Link>
+                </div>
+              )}
             </motion.div>
           </div>
         ))}
