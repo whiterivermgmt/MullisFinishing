@@ -3,195 +3,150 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Container from "./Container";
-import { headerData } from "@/Constants/data";
 import { SiFacebook, SiGoogle } from "react-icons/si";
+import { Phone, MapPin, Clock } from "lucide-react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail } from "lucide-react";
-import { usePathname } from "next/navigation";
+
+const quickLinks = [
+  { title: "Services", href: "/services" },
+  { title: "Gallery", href: "/gallery" },
+  { title: "About Us", href: "/about" },
+  { title: "For Contractors", href: "/for-contractors" },
+  { title: "Free Estimate", href: "/contact" },
+];
+
+const serviceLinks = [
+  { title: "Doors & Trim", href: "/services" },
+  { title: "Crown Molding", href: "/services" },
+  { title: "Custom Stains", href: "/services" },
+  { title: "Furniture Restoration", href: "/services" },
+];
+
+const socialLinks = [
+  {
+    href: "https://www.facebook.com",
+    icon: <SiFacebook />,
+    name: "Facebook",
+  },
+  {
+    href: "https://www.google.com",
+    icon: <SiGoogle />,
+    name: "Google Reviews",
+  },
+];
 
 const Footer = () => {
-  const pathname = usePathname();
-
-  /**
-   * ============================
-   * Social Links
-   * ============================
-   */
-  const socialLinks = [
-    {
-      href: "https://www.facebook.com/profile.php?id=61583190522481",
-      icon: <SiFacebook />,
-      name: "Facebook",
-    },
-    {
-      href: "https://www.google.com",
-      icon: <SiGoogle />,
-      name: "Google Reviews",
-    },
-  ];
-
-  /**
-   * ============================
-   * Quick Links (flattened)
-   * ============================
-   */
-  const quickLinks = headerData.flatMap((item) => {
-    if (item.submenu && item.submenu.length > 0) {
-      return [
-        { title: item.title, href: item.href },
-        ...item.submenu.map((sub) => ({
-          title: sub.title,
-          href: sub.href,
-        })),
-      ];
-    }
-
-    return [{ title: item.title, href: item.href }];
-  });
-
   return (
-    <footer className="mt-auto relative overflow-hidden bg-white text-[#04398c]">
-  {/* Background Accent */}
-  <div className="absolute inset-0 bg-[#04398c] pointer-events-none" />
+    <footer className="w-full bg-[#1e2a6e] text-white">
+      <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
 
-  <Container>
-    <div className="relative z-10 max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-4 gap-12 text-center text-white">
-      
-      {/* Logo + Description + Social */}
-      <div className="flex flex-col items-center gap-4">
-        <Link href="/">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="cursor-pointer"
-          >
-            <Image
-              src="/escos/footer.png"
-              alt="Escos Logo"
-              width={170}
-              height={90}
-              className="object-contain mx-auto"
-            />
-          </motion.div>
-        </Link>
+        {/* Col 1 — Logo + Description + Social */}
+        <div className="flex flex-col gap-4">
+          <Link href="/">
+            <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer">
+              <Image
+                src="/mullis/logo.png"
+                alt="Mullis Finishing LLC"
+                width={160}
+                height={60}
+                className="object-contain"
+              />
+            </motion.div>
+          </Link>
 
-        <p className="text-sm max-w-xs leading-relaxed text-blue-100">
-          Proudly serving Bedford and Southern Indiana with quality products,
-          friendly service, and a commitment to our local community.
-        </p>
+          <p className="text-sm text-blue-200 leading-relaxed">
+            <span className="text-blue-300 font-semibold">Fine finishes for almost any surface.</span>{" "}
+            Professional, dependable, and top quality — every time.
+          </p>
 
-        {/* Social Icons */}
-        <div className="flex gap-3 mt-2 justify-center">
-          {socialLinks.map((item, idx) => (
-            <div key={idx} className="relative group">
+          {/* Social Icons */}
+          <div className="flex gap-3 mt-1">
+            {socialLinks.map((item, idx) => (
               <a
+                key={idx}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="
-                  w-10 h-10
-                  flex items-center justify-center
-                  rounded-full
-                  bg-white
-                  text-[#04398c]
-                  hover:bg-blue-100
-                  transition
-                "
+                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/30 transition text-white"
               >
-                {React.cloneElement(item.icon, { className: "w-5 h-5" })}
+                {React.cloneElement(item.icon, { className: "w-4 h-4" })}
               </a>
-              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-white text-[#04398c] px-2 py-1 rounded shadow opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                {item.name}
-              </span>
-            </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Col 2 — Quick Links */}
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold text-sm uppercase tracking-wider mb-2">Quick Links</h3>
+          {quickLinks.map((link, i) => (
+            <Link
+              key={i}
+              href={link.href}
+              className="text-sm text-blue-200 hover:text-white transition"
+            >
+              {link.title}
+            </Link>
           ))}
         </div>
-      </div>
 
-      {/* Quick Links */}
-      <div>
-        <h3 className="font-bold text-lg mb-6 uppercase border-b border-blue-200 inline-block pb-2">
-          Quick Links
-        </h3>
-        <ul className="space-y-3 text-sm flex flex-col items-center">
-          {quickLinks.map((link, i) => (
-            <li key={`${link.href}-${i}`}>
-              <Link
-                href={link.href}
-                className={`transition font-medium ${
-                  pathname === link.href
-                    ? "text-white underline"
-                    : "text-blue-100 hover:text-white"
-                }`}
-              >
-                {link.title}
-              </Link>
-            </li>
+        {/* Col 3 — Our Services */}
+        <div className="flex flex-col gap-3">
+          <h3 className="font-bold text-sm uppercase tracking-wider mb-2">Our Services</h3>
+          {serviceLinks.map((link, i) => (
+            <Link
+              key={i}
+              href={link.href}
+              className="text-sm text-blue-200 hover:text-white transition"
+            >
+              {link.title}
+            </Link>
           ))}
-        </ul>
+        </div>
+
+        {/* Col 4 — Contact */}
+        <div className="flex flex-col gap-4">
+          <h3 className="font-bold text-sm uppercase tracking-wider mb-2">Contact Us</h3>
+
+          <a href="tel:8122776130" className="flex items-center gap-2 text-sm text-blue-200 hover:text-white transition">
+            <Phone className="w-4 h-4 shrink-0" />
+            812-277-6130
+          </a>
+
+          <div className="flex items-start gap-2 text-sm text-blue-200">
+            <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
+            <span>3050 Old Indiana 37 N<br />Bedford, IN 47421</span>
+          </div>
+
+          <div className="flex items-center gap-2 text-sm text-blue-200">
+            <Clock className="w-4 h-4 shrink-0" />
+            Opens 7 AM
+          </div>
+        </div>
+
       </div>
 
-      {/* Come Visit Us */}
-      <div className="flex flex-col gap-4 items-center">
-        <h3 className="font-bold text-lg mb-6 uppercase border-b border-blue-200 inline-block pb-2">
-          Come Visit Us
-        </h3>
-
-        <p className="text-sm text-blue-100">
-          Serving Bedford, Indiana
-        </p>
-
-        <iframe
-          src="https://maps.google.com/maps?q=Bedford,IN&z=12&output=embed"
-          width="100%"
-          height="200"
-          className="rounded-xl border border-white/20"
-          loading="lazy"
-        />
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10 px-6 py-4">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-blue-300">
+          <p>© {new Date().getFullYear()} Mullis Finishing, LLC. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <span className="flex items-center gap-1">⭐ 5.0 Google Rating</span>
+            <span>Serving Bedford & Lawrence County</span>
+          </div>
+          <p>
+            Powered by{" "}
+            <a
+              href="https://whiteriver.media"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-white font-medium transition"
+            >
+              White River Media
+            </a>
+          </p>
+        </div>
       </div>
-
-      {/* Contact */}
-      <div className="flex flex-col gap-4 items-center">
-        <h3 className="font-bold text-lg mb-6 uppercase border-b border-blue-200 inline-block pb-2">
-          Contact Us
-        </h3>
-
-        <a
-          href="tel:+18126756631"
-          className="flex items-center gap-2 text-blue-100 hover:text-white transition"
-        >
-          <Phone className="w-4 h-4" />
-          
-          (812) 675-6631
-        </a>
-
-        <a
-          href="mailto:Judyschrock79@gmail.com"
-          className="flex items-center gap-2 text-blue-100 hover:text-white transition"
-        >
-          <Mail className="w-4 h-4" />
-          Judyschrock79@gmail.com
-        </a>
-      </div>
-    </div>
-
-    {/* Bottom */}
-    <div className="relative z-10 border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-blue-100">
-      <p>© {new Date().getFullYear()} Rs Services. All Rights Reserved.</p>
-      <p>
-        Designed by{" "}
-        <Link
-          href="https://whiteriver.media"
-          target="_blank"
-          className="hover:text-white font-medium"
-        >
-          White River Media
-        </Link>
-      </p>
-    </div>
-  </Container>
-</footer>
-
+    </footer>
   );
 };
 

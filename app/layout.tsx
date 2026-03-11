@@ -9,10 +9,10 @@ import LiveRadio from "@/components/ui/LiveRadio";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s - Rs Services",
-    default: "Rs Services",
+    template: "%s - Mullis Finishing",
+    default: "Mullis Finishing",
 },
-description: "Licensed electrician serving the Orange & Lawrence County areas offering electrical and home repair services."
+description: "Fine finishes for almost any surface — serving contractors, builders, and homeowners across Lawrence County and beyond."
 };
 
 export default function RootLayout({

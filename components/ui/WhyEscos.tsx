@@ -1,99 +1,128 @@
 "use client";
 
 import React from "react";
-import {
-  FaBolt,
-  FaHardHat,
-  FaClipboardCheck,
-  FaClock,
-  FaBuilding,
-  FaShieldAlt,
-} from "react-icons/fa";
+import Container from "@/components/ui/Container";
+import { motion } from "framer-motion";
+import { DoorOpen, Palette, Sofa, Truck, HardHat, Calculator } from "lucide-react";
+import Link from "next/link";
 
-const values = [
+const services = [
   {
-    icon: <FaBolt size={24} />,
-    title: "Licensed & Experienced",
-    text: "Our electricians are fully licensed and bring years of hands-on experience to every job.",
+    icon: <DoorOpen size={22} />,
+    title: "New Construction Doors, Trim & Crown Molding",
+    text: "Expert installation and finishing for all your new construction needs. Quality craftsmanship on every detail.",
+    link: "/services",
+    linkLabel: "Learn More →",
+    dark: false,
   },
   {
-    icon: <FaShieldAlt size={24} />,
-    title: "Safety First",
-    text: "We follow strict safety standards and electrical codes to protect your property and everyone inside.",
+    icon: <Palette size={22} />,
+    title: "Custom Wood Stains & Color Matching",
+    text: "Perfect color matching to existing woodwork. Custom stains for furniture transformations and restorations.",
+    link: "/services",
+    linkLabel: "Learn More →",
+    dark: false,
   },
   {
-    icon: <FaClipboardCheck size={24} />,
-    title: "Code-Compliant Work",
-    text: "All installations and repairs meet local, state, and national electrical codes.",
+    icon: <Sofa size={22} />,
+    title: "Furniture Restoration & Transformation",
+    text: "Bring tired, worn furniture back to life. Complete restoration and transformation services at our shop.",
+    link: "/services",
+    linkLabel: "Learn More →",
+    dark: false,
   },
   {
-    icon: <FaClock size={24} />,
-    title: "Reliable & On Time",
-    text: "We respect your schedule and show up when we say we will, ready to work efficiently.",
+    icon: <Truck size={22} />,
+    title: "Pick Up & Delivery Service",
+    text: "We make it convenient with free pickup and delivery. Sit back while we handle your project.",
+    link: "/services",
+    linkLabel: "Learn More →",
+    dark: false,
   },
   {
-    icon: <FaBuilding size={24} />,
-    title: "Residential & Commercial",
-    text: "From homes to businesses, we handle projects of all sizes with the same attention to detail.",
+    icon: <HardHat size={22} />,
+    title: "Contractor & Builder Outsourcing",
+    text: "Reliable subcontracting partner for contractors and builders. Quality finishing you can trust.",
+    link: "/for-contractors",
+    linkLabel: "For Contractors →",
+    dark: false,
   },
   {
-    icon: <FaHardHat size={24} />,
-    title: "Professional Workmanship",
-    text: "Clean, organized job sites and quality craftsmanship are standard on every project.",
+    icon: <Calculator size={22} />,
+    title: "Free Estimates on All Jobs",
+    text: "Get a free estimate on any project. No obligation, just quality service.",
+    link: "/contact",
+    linkLabel: "Get Your Free Estimate →",
+    dark: true,
   },
 ];
 
-const WhyRSServices: React.FC = () => {
+const ServicesSection: React.FC = () => {
   return (
-    <section className="relative py-24 bg-white">
-      {/* Subtle background accent */}
-      <div className="absolute inset-x-0 top-0 h-64 bg-[#04398c]/5" />
+    <section className="bg-white py-20">
+      <Container>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Heading */}
-        <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-4xl sm:text-5xl font-bold text-[#04398c]">
-            Why Choose RS Services
+        {/* Header */}
+        <div className="text-center mb-12">
+          <p className="inline-flex items-center gap-2 text-[#1e2a6e] text-sm font-semibold mb-3">
+            ✏️ What We Do
+          </p>
+          <h2 className="text-4xl font-extrabold text-gray-900">
+            Professional Finishing Services
           </h2>
-          <p className="mt-5 text-lg text-gray-600">
-            Dependable electrical services built on experience, safety,
-            and professional standards.
+          <p className="mt-3 text-gray-500 max-w-lg mx-auto text-sm">
+            From new construction to furniture restoration, we deliver exceptional results on every project.
           </p>
         </div>
 
-        {/* Values Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-          {values.map((value, idx) => (
-            <div
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((service, idx) => (
+            <motion.div
               key={idx}
-              className="
-                bg-white
-                rounded-xl
-                border border-gray-200
-                p-8
-                shadow-sm
-                transition-all
-                hover:shadow-lg
-                hover:-translate-y-1
-              "
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              viewport={{ once: true }}
+              className={`
+                rounded-2xl p-6 flex flex-col gap-4 border
+                ${service.dark
+                  ? "bg-[#1e2a6e] text-white border-[#1e2a6e]"
+                  : "bg-[#f0f2f8] text-gray-900 border-transparent hover:shadow-md transition"}
+              `}
             >
-              <div className="mb-5 flex items-center justify-center w-14 h-14 rounded-full bg-[#04398c]/10 text-[#04398c]">
-                {value.icon}
+              {/* Icon */}
+              <div className={`
+                w-11 h-11 rounded-xl flex items-center justify-center shrink-0
+                ${service.dark ? "bg-white/20 text-white" : "bg-[#1e2a6e] text-white"}
+              `}>
+                {service.icon}
               </div>
 
-              <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                {value.title}
+              {/* Title */}
+              <h3 className={`font-bold text-base leading-snug ${service.dark ? "text-white" : "text-gray-900"}`}>
+                {service.title}
               </h3>
 
-              <p className="text-gray-600 leading-relaxed">
-                {value.text}
+              {/* Text */}
+              <p className={`text-sm leading-relaxed flex-1 ${service.dark ? "text-blue-200" : "text-gray-500"}`}>
+                {service.text}
               </p>
-            </div>
+
+              {/* Link */}
+              <Link
+                href={service.link}
+                className={`text-sm font-semibold inline-flex items-center gap-1 ${service.dark ? "text-white underline" : "text-[#1e2a6e]"}`}
+              >
+                {service.linkLabel}
+              </Link>
+            </motion.div>
           ))}
         </div>
-      </div>
+
+      </Container>
     </section>
   );
 };
 
-export default WhyRSServices;
+export default ServicesSection;

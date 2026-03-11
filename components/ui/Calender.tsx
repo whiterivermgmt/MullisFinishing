@@ -3,90 +3,91 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Container from "@/components/ui/Container";
+import Image from "next/image";
 import Link from "next/link";
+import { Check, Sparkles } from "lucide-react";
 
-// Define RS Services
-const services = [
+const projects = [
   {
-    title: "Residential Electrical",
-    description:
-      "Safe and efficient wiring, installations, and upgrades for your home.",
-    href: "/services/residential",
+    image: "/mullis/c6.jpg",
+    badge: { icon: <Check className="h-3 w-3" />, label: "After", color: "bg-green-500" },
+    title: "Furniture Restoration",
+    description: "Complete transformation from worn, scratched surface to beautiful, professional finish.",
   },
   {
-    title: "Commercial Electrical",
-    description:
-      "Reliable electrical solutions for offices, retail, and industrial spaces.",
-    href: "/services/commercial",
-  },
-  {
-    title: "Lighting Installations",
-    description:
-      "Interior and exterior lighting solutions to brighten up any space.",
-    href: "/services/lighting",
-  },
-  {
-    title: "Panel Upgrades",
-    description:
-      "Modernize your electrical panel for safety and capacity improvements.",
-    href: "/services/panel-upgrades",
-  },
-  {
-    title: "Troubleshooting & Repairs",
-    description:
-      "Quick, accurate diagnosis and repair of electrical problems.",
-    href: "/services/troubleshooting",
-  },
-  {
-    title: "Generator Installation",
-    description:
-      "Backup power solutions to keep your home or business running smoothly.",
-    href: "/services/generators",
+    image: "/mullis/c5.jpg",
+    badge: { icon: <Sparkles className="h-3 w-3" />, label: "Custom Finish", color: "bg-[#1e2a6e]" },
+    title: "Custom Color Matching",
+    description: "Custom stain and paint to match your existing furniture and décor perfectly.",
   },
 ];
 
-const ServicesSection: React.FC = () => {
+const TransformationSection: React.FC = () => {
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-white py-20">
       <Container>
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900">
-            Our Services
+
+        {/* Header */}
+        <div className="text-center mb-12">
+          <p className="inline-flex items-center gap-2 text-[#1e2a6e] text-sm font-semibold mb-3">
+            ✏️ Our Work
+          </p>
+          <h2 className="text-4xl font-extrabold text-gray-900">
+            From Worn to <span className="text-[#1e2a6e]">WOW</span>
           </h2>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            RS Services provides professional electrical solutions for homes and businesses. 
-            Every project is completed safely, efficiently, and to code.
+          <p className="mt-3 text-gray-500 max-w-lg mx-auto text-sm">
+            We bring tired, scratched, and faded surfaces back to life — or better. See the difference a professional finish makes.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {projects.map((project, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.03, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="bg-white rounded-3xl shadow-xl p-8 flex flex-col justify-between cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              viewport={{ once: true }}
+              className="flex flex-col rounded-2xl overflow-hidden bg-[#f0f2f8]"
             >
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-gray-900">
-                  {service.title}
-                </h3>
-                <p className="text-gray-700 leading-relaxed">{service.description}</p>
+              {/* Image */}
+              <div className="relative h-[220px] w-full">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                />
+                {/* Badge */}
+                <div className={`absolute bottom-3 left-3 inline-flex items-center gap-1.5 ${project.badge.color} text-white text-xs font-semibold px-3 py-1.5 rounded-full`}>
+                  {project.badge.icon}
+                  {project.badge.label}
+                </div>
               </div>
-              <div className="mt-6">
-                <Link
-                  href={service.href}
-                  className="inline-block px-6 py-3 rounded-full bg-[#04398c] text-white font-semibold shadow-lg transition-all hover:bg-[#032f73] hover:shadow-xl"
-                >
-                  Learn More
-                </Link>
+
+              {/* Content */}
+              <div className="px-5 py-4">
+                <h3 className="font-bold text-gray-900 text-sm mb-1">{project.title}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{project.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <div className="flex justify-center mt-10">
+          <Link
+            href="/gallery"
+            className="inline-flex items-center gap-2 border-2 border-[#1e2a6e] text-[#1e2a6e] font-semibold text-sm px-7 py-3 rounded-md hover:bg-[#1e2a6e] hover:text-white transition"
+          >
+            🖼️ View Our Gallery
+          </Link>
+        </div>
+
       </Container>
     </section>
   );
 };
 
-export default ServicesSection;
+export default TransformationSection;

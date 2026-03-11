@@ -15,7 +15,7 @@ const Logo = () => {
     >
       <Link href="/" className="block">
         <Image
-          src="/escos/logo1.png"
+          src="/mullis/logo.png"
           alt="Rs Logo"
           width={520}
           height={180}

@@ -4,80 +4,99 @@ import React from "react";
 import Container from "@/components/ui/Container";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Truck, MapPin } from "lucide-react";
+import Link from "next/link";
 
-const StaticFeature: React.FC = () => {
+const AboutSection: React.FC = () => {
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-[#f0f2f8] py-20">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          {/* LEFT — STATIC IMAGE */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative w-full h-[420px] rounded-3xl overflow-hidden shadow-2xl"
-          >
-            <Image
-              src="/location/img2.jpg"
-              alt="RS Services Electrical Work"
-              fill
-              className="object-cover"
-              priority
-            />
-          </motion.div>
-
-          {/* RIGHT — CONTENT CARD */}
+          {/* LEFT — Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl shadow-xl p-10 flex flex-col justify-between min-h-[420px]"
+            className="flex flex-col gap-5"
           >
-            <div>
-              <span className="inline-block text-sm font-semibold tracking-widest text-[#04398c] uppercase mb-3">
-                Electrical Contractors
-              </span>
-
-              <h2 className="text-3xl font-bold text-gray-900">
-                RS Services
-              </h2>
-
-              <div className="w-16 h-1 bg-[#04398c] rounded-full mt-4 mb-6" />
-
-              <p className="text-gray-700 leading-relaxed mb-4">
-                RS Services provides professional residential and commercial
-                electrical solutions with an emphasis on safety, quality, and
-                long-term performance.
-              </p>
-
-              <p className="text-gray-700 leading-relaxed">
-                From new installations to upgrades and diagnostics, every job
-                is completed with precision, code compliance, and respect for
-                your property.
-              </p>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 text-[#1e2a6e] text-sm font-semibold">
+              <MapPin className="h-4 w-4" />
+              Bedford's Finishing Specialists
             </div>
 
-            <div className="mt-8">
-              <a
-                href="/services"
-                className="
-                  inline-flex items-center justify-center
-                  px-8 py-4
-                  rounded-full
-                  bg-[#04398c]
-                  text-white
-                  font-semibold
-                  shadow-lg
-                  transition-all
-                  hover:bg-[#032f73]
-                  hover:shadow-xl
-                "
-              >
-                View Our Services
-              </a>
+            {/* Headline */}
+            <h2 className="text-4xl font-extrabold text-[#1e2a6e] leading-tight">
+              Your Finishing Work,<br />Handled.
+            </h2>
+
+            {/* Body */}
+            <p className="text-gray-600 text-sm leading-relaxed">
+              Mullis Finishing LLC is a trusted resource for contractors, home builders, and interior painters who need to outsource finishing work so they can focus on other aspects of the build.
+            </p>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              We specialize in fine finishes on wood products including new construction doors, trim, and crown molding. We also offer custom wood stains to match existing woodwork and furniture transformations at our shop.
+            </p>
+
+            {/* CTA Banner */}
+            <div className="flex items-center gap-4 bg-[#1e2a6e] text-white rounded-xl px-6 py-4 mt-2">
+              <Truck className="h-6 w-6 shrink-0" />
+              <div>
+                <p className="font-bold text-sm">Free Estimates on All Jobs</p>
+                <p className="text-xs text-blue-200">Pick up and delivery available. We make it easy!</p>
+              </div>
+            </div>
+
+            {/* Learn More */}
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-[#1e2a6e] font-semibold text-sm hover:underline mt-1"
+            >
+              Learn More About Us →
+            </Link>
+          </motion.div>
+
+          {/* RIGHT — Image collage */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative flex gap-3 h-[420px]"
+          >
+            {/* Left tall image */}
+            <div className="relative w-1/2 h-full rounded-2xl overflow-hidden shadow-lg">
+              <Image
+                src="/mullis/c1.jpg"
+                alt="Finishing work"
+                fill
+                className="object-cover"
+              />
+              {/* 100% badge */}
+              <div className="absolute bottom-4 left-4 bg-[#1e2a6e] text-white rounded-xl px-4 py-3 shadow-lg">
+                <p className="text-2xl font-extrabold">100%</p>
+                <p className="text-xs text-blue-200 font-medium">Satisfaction Guaranteed</p>
+              </div>
+            </div>
+
+            {/* Right column — small image + stat card */}
+            <div className="flex flex-col gap-3 w-1/2">
+              {/* Stat card */}
+              <div className="bg-white rounded-2xl shadow-lg px-6 py-5">
+                <p className="text-3xl font-extrabold text-[#1e2a6e]">15+</p>
+                <p className="text-sm text-gray-500 mt-1">Years Experience</p>
+              </div>
+              {/* Second image */}
+              <div className="relative flex-1 rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/mullis/c2.jpg"
+                  alt="Wood finishing detail"
+                  fill
+                  className="object-cover"
+                />
+              </div>
             </div>
           </motion.div>
 
@@ -87,4 +106,4 @@ const StaticFeature: React.FC = () => {
   );
 };
 
-export default StaticFeature;
+export default AboutSection;

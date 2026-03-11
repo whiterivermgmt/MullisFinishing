@@ -10,16 +10,13 @@ import { headerData } from "@/Constants/data";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   const menuItems = headerData;
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
       if (window.innerWidth >= 1024) setIsSidebarOpen(false);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -27,62 +24,58 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
-        <Container fullWidth className="px-6 lg:px-10">
-          <div className="relative flex h-20 items-center justify-between">
-            {/* LEFT — Desktop Logo + Menu */}
-            <div className="hidden lg:flex items-center gap-6">
+      <header className="sticky top-0 z-50 w-full bg-[#2b2f6bdf] shadow-sm">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+          <div className="flex h-20 items-center justify-between">
+
+            {/* ── DESKTOP layout: Logo | Nav | CTA ── */}
+            {/* Logo — fixed width so it doesn't grow */}
+            <div className="hidden lg:flex items-center w-[220px] shrink-0">
               <Logo />
+            </div>
+
+            {/* Nav — centered in remaining space */}
+            <div className="hidden lg:flex flex-1 items-center justify-center">
               <HeaderMenu items={menuItems} />
             </div>
 
-            {/* LEFT — Mobile Hamburger */}
-            <button
-              onClick={() => setIsSidebarOpen(true)}
-              className="
-                lg:hidden
-                p-2 rounded-md
-                cursor-pointer
-                hover:bg-blue-50
-                transition
-              "
-              aria-label="Open Menu"
-            >
-              <AlignLeft className="h-7 w-7 text-[#04398c]" />
-            </button>
-
-            {/* CENTER — Mobile Logo ONLY */}
-            <div className="absolute left-1/2 -translate-x-1/2 lg:hidden ">
-              <Logo />
-            </div>
-
-            {/* RIGHT — CTA */}
-            <div className="flex items-center">
+            {/* CTA — fixed width, right-aligned */}
+            <div className="hidden lg:flex items-center justify-end w-[220px] shrink-0">
               <a
-                href="/faq"
-                className="
-                  whitespace-nowrap
-                  rounded-full
-                  bg-[#04398c]
-                  px-5 py-2
-                  text-sm md:text-base
-                  font-semibold
-                  text-white
-                  shadow-md
-                  transition
-                  hover:bg-[#032f73]
-                  hover:scale-105
-                "
+                href="/contact"
+                className="whitespace-nowrap rounded-full bg-[#1e2a6e] px-5 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-[#af1d18] hover:scale-105"
               >
                 Contact Us
               </a>
             </div>
-          </div>
 
-        </Container>
+            {/* ── MOBILE layout: Hamburger | Logo (centered) | CTA ── */}
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="lg:hidden p-2 rounded-md hover:bg-red-50 transition"
+              aria-label="Open Menu"
+            >
+              <AlignLeft className="h-6 w-6 text-[#1e2a6e]" />
+            </button>
+
+            {/* Mobile logo — truly centered using flex-1 on both sides */}
+            <div className="lg:hidden flex flex-1 justify-center">
+              <Logo />
+            </div>
+
+            <div className="lg:hidden flex items-center">
+              <a
+                href="/contact"
+                className="whitespace-nowrap rounded-full bg-[#1e2a6e] px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-[#af1d18]"
+              >
+                Contact Us
+              </a>
+            </div>
+
+          </div>
+        </div>
       </header>
 
-      {/* MOBILE SIDEBAR */}
       <SideMenu
         isOpen={isSidebarOpen}
         onClose={() => setIsSidebarOpen(false)}
