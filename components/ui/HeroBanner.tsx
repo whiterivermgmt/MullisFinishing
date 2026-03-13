@@ -41,7 +41,7 @@ const HomeHero: React.FC = () => {
       </AnimatePresence>
 
       {/* Blue overlay gradient — left heavy like the screenshot */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent pointer-events-none" />
 
       {/* Wave bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-10">

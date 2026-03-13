@@ -40,7 +40,7 @@ const DropdownMenu: React.FC<DropdownProps> = ({ menuTitle }) => {
               className="group flex items-start gap-3 p-3 rounded-xl hover:bg-[#f0f2f8] transition-all duration-150"
             >
               {/* Icon */}
-              <div className="flex-shrink-0 w-9 h-9 flex items-center justify-center bg-[#1e2a6e]/10 group-hover:bg-[#1e2a6e] rounded-lg transition-colors duration-150">
+              <div className="shrink-0 w-9 h-9 flex items-center justify-center bg-[#1e2a6e]/10 group-hover:bg-[#1e2a6e] rounded-lg transition-colors duration-150">
                 <IconComponent className="w-4 h-4 text-[#1e2a6e] group-hover:text-white transition-colors duration-150" />
               </div>
 
