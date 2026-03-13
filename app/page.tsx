@@ -16,13 +16,11 @@ const HomePage = () => {
       <section className="relative w-full mt-6">
         <HeroBanner />
       </section>
-
       <Specialist />
       <Services />
       <Reviews />
       <OurWork />
-      
-
+    
       <section className="w-full">
         <ContactForm />
       </section>

@@ -69,7 +69,7 @@ const AboutSection: React.FC = () => {
             {/* Left tall image */}
             <div className="relative w-1/2 h-full rounded-2xl overflow-hidden shadow-lg">
               <Image
-                src="/mullis/c1.jpg"
+                src="/homeimages/home3.jpg"
                 alt="Finishing work"
                 fill
                 className="object-cover"
@@ -91,7 +91,7 @@ const AboutSection: React.FC = () => {
               {/* Second image */}
               <div className="relative flex-1 rounded-2xl overflow-hidden shadow-lg">
                 <Image
-                  src="/mullis/c2.jpg"
+                  src="/homeimages/home6.jpg"
                   alt="Wood finishing detail"
                   fill
                   className="object-cover"

@@ -1,63 +1,38 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 
-const faqs = [
-  {
-    q: "What types of wood finishing services do you offer?",
-    a: "We specialize in fine finishes for new construction doors, trim, and crown molding, custom wood stains and color matching, furniture restoration, and contractor outsourcing. If it involves wood finishing, we've got you covered.",
-  },
-  {
-    q: "Do you offer free estimates?",
-    a: "Yes — every single job comes with a free, no-obligation estimate. Just give us a call or fill out our contact form and we'll get back to you within 24 hours.",
-  },
-  {
-    q: "Do you offer pickup and delivery?",
-    a: "We do. We offer complimentary pickup and delivery throughout Bedford and Lawrence County. Just let us know what you need and we'll handle the logistics.",
-  },
-  {
-    q: "What areas do you serve?",
-    a: "We're based in Bedford, Indiana and primarily serve Lawrence County and the surrounding areas. Not sure if we cover your area? Give us a call and we'll let you know.",
-  },
-  {
-    q: "How long does a typical finishing project take?",
-    a: "It depends on the size and complexity of the job. Most standard projects are turned around within a few business days. We'll give you a clear timeline upfront before any work begins.",
-  },
-  {
-    q: "Can you match an existing stain or finish?",
-    a: "Absolutely. Custom color matching is one of our specialties. Bring us a sample or a photo and we'll work to match it as closely as possible.",
-  },
-  {
-    q: "Do you work with contractors and builders?",
-    a: "Yes — a large part of our business is contractor and builder outsourcing. We're a reliable finishing partner for construction crews who need consistent, high-quality results on a schedule.",
-  },
-  {
-    q: "Can you restore old or damaged furniture?",
-    a: "Yes. We restore and refinish furniture of all kinds — from antique pieces to modern furniture that needs a fresh look. Send us photos and we'll let you know what's possible.",
-  },
-  {
-    q: "How do I get started?",
-    a: "The easiest way is to call us directly at 812-277-6130 or fill out the contact form on our website. We'll get back to you within 24 hours to discuss your project and schedule a free estimate.",
-  },
-  {
-    q: "Are you insured?",
-    a: "Yes. Mullis Finishing LLC is fully insured, so you can have peace of mind knowing your project is in good hands from start to finish.",
-  },
+const images = [
+  { src: "/images/g1.jpg" },
+  { src: "/images/g2.jpg" },
+  { src: "/images/g3.jpg" },
+  { src: "/images/g6.jpg" },
+  { src: "/images/g7.jpg" },
+  { src: "/images/g8.jpg" },
+  { src: "/images/g9.jpg" },
+  { src: "/images/g12.jpg" },
+  { src: "/homeimages/home1.jpg" },
+  { src: "/homeimages/home2.jpg" },
+  { src: "/homeimages/home3.jpg" },
+  { src: "/homeimages/home5.jpg" },
+  { src: "/homeimages/home6.jpg" },
+  { src: "/images/g5.jpg" },
 ];
 
-const cardContainer = {
+const gridContainer = {
   hidden: {},
   show: { transition: { staggerChildren: 0.07 } },
 };
 
-const cardItem = {
+const gridItem = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-export default function FAQPage() {
+export default function GalleryPage() {
   return (
     <main className="w-full bg-white overflow-x-hidden">
 
@@ -83,7 +58,7 @@ export default function FAQPage() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-blue-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6"
           >
-            Got Questions? We Have Answers.
+            Fine Finishes · Bedford, Indiana
           </motion.div>
 
           <motion.h1
@@ -92,8 +67,8 @@ export default function FAQPage() {
             transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             className="text-5xl md:text-6xl font-black text-white leading-tight mb-5"
           >
-            Frequently Asked<br />
-            <span className="text-blue-300">Questions.</span>
+            Our Work<br />
+            <span className="text-blue-300">Speaks for Itself.</span>
           </motion.h1>
 
           <motion.p
@@ -102,40 +77,43 @@ export default function FAQPage() {
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="text-gray-200 text-base leading-relaxed max-w-md mx-auto"
           >
-            Everything you need to know about working with Mullis Finishing. Can't find your answer? Just call us.
+            A look at the craftsmanship we bring to every door, trim, stain, and restoration project we take on.
           </motion.p>
         </div>
       </section>
 
-      {/* FAQ CARDS */}
+      {/* MASONRY GALLERY */}
       <section className="w-full bg-white py-20">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
-            variants={cardContainer}
+            variants={gridContainer}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-50px" }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-5"
+            className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"
           >
-            {faqs.map(({ q, a }, i) => (
+            {images.map(({ src }, i) => (
               <motion.div
                 key={i}
-                className="bg-[#f0f2f8] rounded-2xl p-7 flex flex-col gap-4 hover:shadow-md transition-shadow"
+                className="break-inside-avoid rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
               >
-                <div className="flex items-start gap-4">
-                  <span className="w-9 h-9 rounded-xl bg-[#1e2a6e] text-white text-sm font-black flex items-center justify-center shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="font-black text-gray-900 text-base leading-snug pt-1">{q}</h3>
+                <div className="relative w-full overflow-hidden">
+                  <Image
+                    src={src}
+                    alt={`Mullis Finishing project ${i + 1}`}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-[#1e2a6e] opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </div>
-                <p className="text-sm text-gray-500 leading-relaxed pl-[52px]">{a}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* BOTTOM CTA */}
+      {/* CTA */}
       <section className="relative w-full bg-[#1e2a6e] py-20 overflow-hidden">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
@@ -153,7 +131,7 @@ export default function FAQPage() {
             viewport={{ once: true }}
             className="text-4xl font-black text-white leading-tight"
           >
-            Still Have Questions?
+            Like What You See?
           </motion.h2>
 
           <motion.p
@@ -163,7 +141,7 @@ export default function FAQPage() {
             viewport={{ once: true }}
             className="text-blue-200 text-sm leading-relaxed max-w-sm"
           >
-            We're happy to talk through your project. Call Josh directly or send us a message and we'll get back to you within 24 hours.
+            Get a free estimate on your next project. We serve Bedford and Lawrence County with pickup and delivery available.
           </motion.p>
 
           <motion.div
@@ -177,7 +155,7 @@ export default function FAQPage() {
               href="/contact"
               className="inline-flex items-center gap-2 bg-white text-[#1e2a6e] font-black text-sm px-8 py-4 rounded-xl hover:bg-blue-50 transition shadow-lg"
             >
-              Send a Message
+              Get a Free Estimate
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
