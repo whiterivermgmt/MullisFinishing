@@ -3,32 +3,27 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SiFacebook, SiGoogle } from "react-icons/si";
+import { SiFacebook } from "react-icons/si";
 import { Phone, MapPin, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
 const quickLinks = [
+  { title: "Home", href: "/" },
+  { title: "About Us", href: "/about" },
   { title: "Services", href: "/services" },
   { title: "Gallery", href: "/gallery" },
-  { title: "About Us", href: "/about" },
-  { title: "For Contractors", href: "/for-contractors" },
+  { title: "FAQ", href: "/faq" },
+  { title: "Join Our Team", href: "/careers" },
   { title: "Free Estimate", href: "/contact" },
 ];
 
 const serviceLinks = [
-  { title: "Doors & Trim", href: "/services" },
-  { title: "Crown Molding", href: "/services" },
-  { title: "Custom Stains", href: "/services" },
+  { title: "Doors, Trim & Crown Molding", href: "/services" },
+  { title: "Custom Wood Staining", href: "/services" },
   { title: "Furniture Restoration", href: "/services" },
-];
-
-const socialLinks = [
-  {
-    href: "https://www.facebook.com/profile.php?id=100086625738794",
-    icon: <SiFacebook />,
-    name: "Facebook",
-  },
-  
+  { title: "Pickup & Delivery", href: "/services" },
+  { title: "Contractor Outsourcing", href: "/services" },
+  { title: "Color Matching", href: "/services" },
 ];
 
 const Footer = () => {
@@ -55,19 +50,15 @@ const Footer = () => {
             Professional, dependable, and top quality — every time.
           </p>
 
-          {/* Social Icons */}
           <div className="flex gap-3 mt-1">
-            {socialLinks.map((item, idx) => (
-              <a
-                key={idx}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/30 transition text-white"
-              >
-                {React.cloneElement(item.icon, { className: "w-4 h-4" })}
-              </a>
-            ))}
+            <Link
+              href="https://www.facebook.com/profile.php?id=100086625738794"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-white/15 hover:bg-white/30 transition text-white"
+            >
+              <SiFacebook className="w-4 h-4" />
+            </Link>
           </div>
         </div>
 
@@ -103,10 +94,10 @@ const Footer = () => {
         <div className="flex flex-col gap-4">
           <h3 className="font-bold text-sm uppercase tracking-wider mb-2">Contact Us</h3>
 
-          <a href="tel:8122776130" className="flex items-center gap-2 text-sm text-blue-200 hover:text-white transition">
+          <Link href="tel:8122776130" className="flex items-center gap-2 text-sm text-blue-200 hover:text-white transition">
             <Phone className="w-4 h-4 shrink-0" />
             812-277-6130
-          </a>
+          </Link>
 
           <div className="flex items-start gap-2 text-sm text-blue-200">
             <MapPin className="w-4 h-4 shrink-0 mt-0.5" />
@@ -131,14 +122,14 @@ const Footer = () => {
           </div>
           <p>
             Powered by{" "}
-            <a
+            <Link
               href="https://whiteriver.media"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white font-medium transition"
             >
               White River Media
-            </a>
+            </Link>
           </p>
         </div>
       </div>
