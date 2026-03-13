@@ -43,12 +43,12 @@ const HomeHero: React.FC = () => {
       {/* Blue overlay gradient — left heavy like the screenshot */}
       <div className="absolute inset-0 bg-linear-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent pointer-events-none" />
 
-      {/* Wave bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-10">
-        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 40 C360 80 1080 0 1440 40 L1440 80 L0 80 Z" fill="white" />
-        </svg>
-      </div>
+          {/* Wave bottom */}
+    <div className="absolute bottom-0 left-0 right-0 z-10 leading-none">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="block w-full">
+        <path d="M0 40 C360 80 1080 0 1440 40 L1440 80 L0 80 Z" fill="white" />
+      </svg>
+    </div>
 
       {/* Content */}
       <div className="relative z-20 px-8 sm:px-14 lg:px-20 max-w-2xl py-16">

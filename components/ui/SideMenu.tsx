@@ -39,23 +39,18 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const socialLinks = [
     {
-      href: "https://www.facebook.com/profile.php?id=61583190522481",
+      href: "https://www.facebook.com/profile.php?id=100086625738794",
       icon: <SiFacebook />,
       bg: "#1877F2",
       name: "Facebook",
     },
     {
-      href: "https://www.google.com/",
+      href: "https://www.google.com/search?q=mullis+finishing&oq=mul&gs_lcrp=EgZjaHJvbWUqCAgCEEUYJxg7MgYIABBFGDwyBggBEEUYPDIICAIQRRgnGDsyCggDEC4YsQMYgAQyCggEEC4YsQMYgAQyBggFEEUYOTIGCAYQRRg8MgYIBxBFGDzSAQgyMzU3ajBqN6gCALACAA&sourceid=chrome&ie=UTF-8",
       icon: <SiGoogle />,
       bg: "#DB4437",
       name: "Google Reviews",
     },
-    {
-      href: "https://www.instagram.com/",
-      icon: <SiInstagram />,
-      bg: "#C13584",
-      name: "Instagram",
-    },
+
   ];
 
   if (!isMounted) return null;
