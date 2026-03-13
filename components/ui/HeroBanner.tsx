@@ -1,22 +1,44 @@
 'use client';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Star, Truck } from "lucide-react";
 
-const HomeHero: React.FC = () => {
-  return (
-    <section className="relative w-full min-h-[520px] md:min-h-[600px] bg-gray-900 overflow-hidden flex items-center">
+const images = ["/homeimages/home1.jpg", "/homeimages/home2.jpg"];
 
-      {/* Background Image */}
-      <Image
-        src="/mullis/hero.jpg"
-        alt="Mullis Finishing Work"
-        fill
-        className="object-cover object-center brightness-50"
-        priority
-      />
+const HomeHero: React.FC = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <section className="relative w-full min-h-[520px] md:min-h-[600px] bg-gray-900 overflow-hidden flex items-center -mt-6">
+
+      {/* Rotating Background Images */}
+      <AnimatePresence>
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={images[current]}
+            alt="Mullis Finishing Work"
+            fill
+            className="object-cover object-center brightness-50"
+            priority
+          />
+        </motion.div>
+      </AnimatePresence>
 
       {/* Blue overlay gradient — left heavy like the screenshot */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#1e2a6e]/80 via-[#1e2a6e]/50 to-transparent pointer-events-none" />

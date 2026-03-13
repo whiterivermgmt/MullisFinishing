@@ -28,18 +28,18 @@ const Header = () => {
         <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <div className="flex h-20 items-center justify-between">
 
-            {/* ── DESKTOP layout: Logo | Nav | CTA ── */}
-            {/* Logo — fixed width so it doesn't grow */}
+            
+            {/* Logo  */}
             <div className="hidden lg:flex items-center w-[220px] shrink-0">
               <Logo />
             </div>
 
-            {/* Nav — centered in remaining space */}
+            {/* Nav  */}
             <div className="hidden lg:flex flex-1 items-center justify-center">
               <HeaderMenu items={menuItems} />
             </div>
 
-            {/* CTA — fixed width, right-aligned */}
+            {/* CTA  */}
             <div className="hidden lg:flex items-center justify-end w-[220px] shrink-0">
               <a
                 href="/contact"
@@ -49,7 +49,7 @@ const Header = () => {
               </a>
             </div>
 
-            {/* ── MOBILE layout: Hamburger | Logo (centered) | CTA ── */}
+            {/* ── MOBILE layout ── */}
             <button
               onClick={() => setIsSidebarOpen(true)}
               className="lg:hidden p-2 rounded-md hover:bg-red-50 transition"
@@ -58,7 +58,7 @@ const Header = () => {
               <AlignLeft className="h-6 w-6 text-[#1e2a6e]" />
             </button>
 
-            {/* Mobile logo — truly centered using flex-1 on both sides */}
+            {/* Mobile logo —  */}
             <div className="lg:hidden flex flex-1 justify-center">
               <Logo />
             </div>

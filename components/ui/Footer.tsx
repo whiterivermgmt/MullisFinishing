@@ -24,15 +24,11 @@ const serviceLinks = [
 
 const socialLinks = [
   {
-    href: "https://www.facebook.com",
+    href: "https://www.facebook.com/profile.php?id=100086625738794",
     icon: <SiFacebook />,
     name: "Facebook",
   },
-  {
-    href: "https://www.google.com",
-    icon: <SiGoogle />,
-    name: "Google Reviews",
-  },
+  
 ];
 
 const Footer = () => {
@@ -45,7 +41,7 @@ const Footer = () => {
           <Link href="/">
             <motion.div whileHover={{ scale: 1.05 }} className="cursor-pointer">
               <Image
-                src="/mullis/logo.png"
+                src="/mullis/mullislogo.png"
                 alt="Mullis Finishing LLC"
                 width={160}
                 height={60}

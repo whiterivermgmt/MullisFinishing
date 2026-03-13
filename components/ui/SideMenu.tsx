@@ -7,7 +7,7 @@ import { SiFacebook, SiGoogle, SiInstagram } from "react-icons/si";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { headerData } from "@/Constants/data";
-import Logo from "./Logo";
+import Image from "next/image";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -41,19 +41,19 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
     {
       href: "https://www.facebook.com/profile.php?id=61583190522481",
       icon: <SiFacebook />,
-      bg: "#1877F2", 
+      bg: "#1877F2",
       name: "Facebook",
     },
     {
       href: "https://www.google.com/",
       icon: <SiGoogle />,
-      bg: "#DB4437", 
+      bg: "#DB4437",
       name: "Google Reviews",
     },
     {
       href: "https://www.instagram.com/",
       icon: <SiInstagram />,
-      bg: "#C13584", 
+      bg: "#C13584",
       name: "Instagram",
     },
   ];
@@ -77,40 +77,35 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
       </AnimatePresence>
 
       {/* Sidebar */}
-<motion.div
-  className="
-    fixed top-0 left-0
-    h-full w-72
-    z-50
-    flex flex-col justify-between
-    rounded-r-3xl
-    shadow-xl
-    bg-white
-  "
-  initial={{ x: "-100%" }}
-  animate={{ x: isOpen ? 0 : "-100%" }}
-  transition={{ type: "spring", stiffness: 200, damping: 25 }}
->
-  {/* Logo + Close Button */}
-  <div className="flex justify-between items-center p-6 border-b border-[#04398c]/20">
-    <Logo />
+      <motion.div
+        className="fixed top-0 left-0 h-full w-72 z-50 flex flex-col justify-between rounded-r-3xl shadow-xl bg-white"
+        initial={{ x: "-100%" }}
+        animate={{ x: isOpen ? 0 : "-100%" }}
+        transition={{ type: "spring", stiffness: 200, damping: 25 }}
+      >
+        {/* Logo + Close Button */}
+        <div className="flex justify-between items-center p-6 border-b border-[#1e2a6e]/20">
+          <Link href="/" onClick={handleClose}>
+            <Image
+              src="/mullis/mobilemullis.png"
+              alt="Mullis Finishing LLC"
+              width={140}
+              height={100}
+              className="object-contain h-25 w-auto"
+              priority
+            />
+          </Link>
 
-    <button
-      onClick={handleClose}
-      className="
-        p-2 rounded-full
-        hover:bg-[#04398c]/10
-        cursor-pointer
-        transition-colors
-      "
-      aria-label="Close Menu"
-    >
-      <X className="w-6 h-6 text-[#04398c]" />
-    </button>
-  </div>
+          <button
+            onClick={handleClose}
+            className="p-2 rounded-full hover:bg-[#1e2a6e]/10 cursor-pointer transition-colors"
+            aria-label="Close Menu"
+          >
+            <X className="w-6 h-6 text-[#1e2a6e]" />
+          </button>
+        </div>
 
-
-                {/* Menu Items */}
+        {/* Menu Items */}
         <nav className="flex flex-col gap-2 px-4 mt-4 overflow-y-auto">
           {headerData.map((item, idx) => {
             const hasSubmenu = item.submenu && item.submenu.length > 0;
@@ -119,7 +114,6 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
 
             return (
               <div key={item.title} className="w-full">
-                {/* Main item */}
                 <div
                   className={`
                     flex justify-between items-center
@@ -128,25 +122,17 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                     rounded-2xl
                     cursor-pointer
                     transition-all duration-200
-                    ${
-                      isActive || isOpen
-                        ? "bg-[#04398c] text-white shadow-sm"
-                        : "bg-white text-[#04398c]"
-                    }
-                    hover:bg-[#04398c]/10
+                    ${isActive || isOpen
+                      ? "bg-[#1e2a6e] text-white shadow-sm"
+                      : "bg-white text-[#1e2a6e]"}
+                    hover:bg-[#1e2a6e]/10
                   `}
-                  onClick={() =>
-                    hasSubmenu ? toggleSubmenu(idx) : handleClose()
-                  }
+                  onClick={() => hasSubmenu ? toggleSubmenu(idx) : handleClose()}
                 >
                   {hasSubmenu ? (
                     <span>{item.title}</span>
                   ) : (
-                    <Link
-                      href={item.href}
-                      onClick={handleClose}
-                      className="w-full"
-                    >
+                    <Link href={item.href} onClick={handleClose} className="w-full">
                       {item.title}
                     </Link>
                   )}
@@ -154,10 +140,9 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                   {hasSubmenu && (
                     <ChevronDown
                       className={`
-                        w-5 h-5
-                        transition-transform duration-200
+                        w-5 h-5 transition-transform duration-200
                         ${isOpen ? "rotate-180" : ""}
-                        ${isActive || isOpen ? "text-white" : "text-[#04398c]"}
+                        ${isActive || isOpen ? "text-white" : "text-[#1e2a6e]"}
                       `}
                     />
                   )}
@@ -171,35 +156,19 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="
-                        flex flex-col
-                        ml-4 mt-2 gap-1
-                        rounded-2xl
-                        bg-white
-                        p-2
-                        shadow-md
-                        border border-[#04398c]/10
-                      "
+                      className="flex flex-col ml-4 mt-2 gap-1 rounded-2xl bg-white p-2 shadow-md border border-[#1e2a6e]/10"
                     >
                       {item.submenu.map((sub) => {
                         const isSubActive = pathName === sub.href;
-
                         return (
                           <Link
                             key={sub.title}
                             href={sub.href}
                             onClick={handleClose}
                             className={`
-                              px-4 py-2
-                              rounded-xl
-                              text-sm font-medium
-                              transition-colors duration-200
-                              ${
-                                isSubActive
-                                  ? "bg-[#04398c] text-white"
-                                  : "text-[#04398c]"
-                              }
-                              hover:bg-[#04398c]/10
+                              px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200
+                              ${isSubActive ? "bg-[#1e2a6e] text-white" : "text-[#1e2a6e]"}
+                              hover:bg-[#1e2a6e]/10
                             `}
                           >
                             {sub.title}
@@ -213,7 +182,6 @@ const SideMenu: FC<SidebarProps> = ({ isOpen, onClose }) => {
             );
           })}
         </nav>
-
 
         {/* Social Links */}
         <div className="flex justify-center gap-4 p-4">

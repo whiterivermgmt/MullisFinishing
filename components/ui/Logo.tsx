@@ -15,14 +15,14 @@ const Logo = () => {
     >
       <Link href="/" className="block">
         <Image
-          src="/mullis/logo.png"
+          src="/mullis/mullislogo.png"
           alt="Rs Logo"
           width={520}
           height={180}
           priority
           className="
             w-auto
-            h-16        /* mobile */
+            h-25        /* mobile */
             md:h-16     /* tablet */
             lg:h-24     /* desktop */
             xl:h-28     /* large desktop */
